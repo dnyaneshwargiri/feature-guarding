@@ -8,8 +8,11 @@
         id="advanced-search"
         type="checkbox"
         [(ngModel)]="features.advancedSearch"
-        class="toggle-checkbox"
+        class="toggle-checkbox hidden"
       />
+      <label for="advanced-search" class="toggle-label cursor-pointer">
+        <div class="toggle"></div>
+      </label>
     </div>
 
     <div class="flex items-center justify-between">
@@ -18,8 +21,11 @@
         id="property-listing"
         type="checkbox"
         [(ngModel)]="features.propertyListing"
-        class="toggle-checkbox"
+        class="toggle-checkbox hidden"
       />
+      <label for="property-listing" class="toggle-label cursor-pointer">
+        <div class="toggle"></div>
+      </label>
     </div>
 
     <div class="flex items-center justify-between">
@@ -28,14 +34,17 @@
         id="user-reviews"
         type="checkbox"
         [(ngModel)]="features.userReviews"
-        class="toggle-checkbox"
+        class="toggle-checkbox hidden"
       />
+      <label for="user-reviews" class="toggle-label cursor-pointer">
+        <div class="toggle"></div>
+      </label>
     </div>
 
     <div class="mt-6">
       <button
         (click)="saveFeatures()"
-        class="bg-blue-500 text-white py-2 px-4 rounded"
+        class="bg-blue-500 text-white py-2 px-4 "
       >
         Save Features
       </button>
