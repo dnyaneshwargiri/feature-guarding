@@ -1,0 +1,18 @@
+{
+  "name": "airbnb-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "json-server": "1.0.0-beta.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}

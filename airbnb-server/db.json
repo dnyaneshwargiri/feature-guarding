@@ -1,0 +1,12 @@
+{
+  "features": [
+    {
+      "role": "premium-user",
+      "features": {
+        "advancedSearch": true,
+        "propertyListing": false,
+        "userReviews": true
+      }
+    }
+  ]
+}
