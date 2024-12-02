@@ -1,6 +1,7 @@
 {
   "features": [
     {
+      "id": 1,
       "role": "premium-user",
       "features": {
         "advancedSearch": true,

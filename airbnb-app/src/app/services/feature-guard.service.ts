@@ -6,7 +6,8 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { FeatureSettingsService } from './feature-settings.service';
 
 @Injectable({
@@ -35,18 +36,32 @@ export class FeatureGuardService implements CanActivate, CanActivateChild {
     return this.checkFeatureState(route);
   }
 
-  private checkFeatureState(route: ActivatedRouteSnapshot): boolean {
+  private checkFeatureState(
+    route: ActivatedRouteSnapshot
+  ): Observable<boolean> {
     const feature = route.data['feature'];
-    if (!this.roleFeatures[feature] || !this.roleFeatures[feature].enabled) {
-      this.router.navigate(['/']);
-      return false;
-    }
-    return true;
+
+    return this.loadFeatures().pipe(
+      switchMap(() => {
+        if (!this.roleFeatures[feature]) {
+          this.router.navigate(['/']);
+          return of(false);
+        }
+        return of(true);
+      }),
+      catchError((error) => {
+        console.error('Error loading features', error);
+        this.router.navigate(['/']);
+        return of(false);
+      })
+    );
   }
 
-  loadFeatures() {
-    this.featureService.getFeatures('premium-user').subscribe((features) => {
-      this.roleFeatures = features;
-    });
+  loadFeatures(): Observable<any> {
+    return this.featureService.getFeatures('premium-user', 1).pipe(
+      tap((features) => {
+        this.roleFeatures = features[0].features;
+      })
+    );
   }
 }

@@ -13,13 +13,14 @@ export class FeatureSettingsService {
   // POST request to save features for a role
   saveFeatures(role: string, enabledFeatures: any): Observable<any> {
     return this.http.post(this.apiUrl, {
+      id: 1,
       role,
       features: enabledFeatures,
     });
   }
 
   // GET request to get features for a specific role
-  getFeatures(role: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?role=${role}`);
+  getFeatures(role: string, id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}?role=${role}&id=${id}`);
   }
 }

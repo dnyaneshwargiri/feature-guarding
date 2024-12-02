@@ -17,12 +17,25 @@ export class FeatureSettingsComponent implements OnInit {
   };
 
   constructor(private featureService: FeatureSettingsService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getFeatures();
+  }
 
   saveFeatures() {
     this.featureService.saveFeatures('premium-user', this.features).subscribe({
       next: (response) => {
         console.log('Features saved successfully', response);
+      },
+      error: (error) => {
+        console.error('Error saving features', error);
+      },
+    });
+  }
+
+  getFeatures() {
+    this.featureService.getFeatures('premium-user', 1).subscribe({
+      next: (response) => {
+        this.features = response[0].features;
       },
       error: (error) => {
         console.error('Error saving features', error);
