@@ -6,7 +6,7 @@
       "features": {
         "advancedSearch": true,
         "propertyListing": false,
-        "userReviews": true
+        "userReviews": false
       }
     }
   ]
